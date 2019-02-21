@@ -43,26 +43,31 @@
 
     public function edit($where = [])
     {
+
       $where = [];
       if (isset($_GET['id']) && $_GET['id'] != '') {
-        if (isset($_POST) && isset($_POST['edit'])) {
-          $where = [
-            'id' => $_GET['id'],
-            'ten' => $_POST['ten'],
-            'ngaysinh' => $_POST['ngaysinh'],
-            'que' => $_POST['que'],
-            'luongcung' => $_POST['luongcung'],
-            'thuong' => $_POST['thuong'],
-            'phat' => $_POST['phat'],
-          ];
-          var_dump($where);
-          if ($this->model->create($where)) {
-            header('Location: ?c=cbgv');
-          }
+        $where['id'] = $_GET['id'];
+        $gv = $this->model->getOne($where);
+        $data = [];
+        $data['gv'] = $gv;
+        var_dump($data);
+      }
+      if (isset($_POST) && isset($_POST['edit'])) {
+        $where = [
+          'id' => $_GET['id'],
+          'ten' => $_POST['ten'],
+          'ngaysinh' => $_POST['ngaysinh'],
+          'que' => $_POST['que'],
+          'luongcung' => $_POST['luongcung'],
+          'thuong' => $_POST['thuong'],
+          'phat' => $_POST['phat'],
+        ];
+        var_dump($where);
+        if ($this->model->edit($where)) {
+          header('Location: ?c=cbgv');
         }      
       }
-      
-      $this->renderView('edit');
+      $this->renderView('edit',$data);
     }
 
     public function delete()

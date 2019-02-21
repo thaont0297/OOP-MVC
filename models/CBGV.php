@@ -36,6 +36,18 @@
 			}
 		}
 
+		public function getOne($where = [])
+		{
+			if (isset($where)) {
+				$sql = 'SELECT * FROM giaovien WHERE id = '.$where['id'];
+				$query = $this->_connect->query($sql);
+				if ($query) {
+					$result = $query->fetch_assoc();
+					return $result;
+				}
+			}
+		}
+
 		public function edit($where = [])
 		{
 			if (!empty($where) > 0 ) {
