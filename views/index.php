@@ -11,6 +11,11 @@
 		<table border = "1" cellpadding = "4">
 			<h1>Danh sách cán bộ giáo viên</h1>
 			<h3><a href="index.php?c=cbgv&m=create">Thêm giáo viên</a></h3>
+			<form action="" method="POST" accept-charset="utf-8">
+				Tìm kiếm theo tên: 
+				<input type="text" name="ten">
+				<a href="?c=cbgv&m=search"><input type="submit" name="search" value="Tìm kiếm"></a>
+			</form>
 			<thead>
 				<tr>
 					<th>ID</th>

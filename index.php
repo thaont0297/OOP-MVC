@@ -28,5 +28,7 @@ if (file_exists($controllerFile)) {
 	// khoi tao class tuong ung
 	$c = new $controllerName();		
 	$c->$method();
+} else {
+	echo "File không tồn tại";
 }
 ?>

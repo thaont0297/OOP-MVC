@@ -1,6 +1,6 @@
 <?php 
   require CONTROLLER_PATH . 'BaseController.php';
-  require MODEL_PATH . 'CBGV.php';
+  require MODEL_PATH . 'RepoCBGV.php';
 
   class CbgvController extends BaseController {
 
@@ -9,7 +9,7 @@
     public function __construct()
     {        
         parent::__construct();
-        $this->model = new CBGV(); 
+        $this->model = new RepoCBGV(); 
     }
 
     public function index()
@@ -18,6 +18,7 @@
       $this->model->tinhLuong();
       $gv = $this->model->getGV($data);
       $data['gv'] = $gv;
+      var_dump($data['gv']);
       $this->renderView('index',$data);
     }
 
@@ -34,7 +35,7 @@
           'phat' => $_POST['phat'],
         ];
         var_dump($where);
-        if ($this->model->create($where)) {
+        if ($this->model->createGV($where)) {
           header('Location: ?c=cbgv');
         }
       }      
@@ -50,7 +51,6 @@
         $gv = $this->model->getOne($where);
         $data = [];
         $data['gv'] = $gv;
-        var_dump($data);
       }
       if (isset($_POST) && isset($_POST['edit'])) {
         $where = [
@@ -63,7 +63,7 @@
           'phat' => $_POST['phat'],
         ];
         var_dump($where);
-        if ($this->model->edit($where)) {
+        if ($this->model->editGV($where)) {
           header('Location: ?c=cbgv');
         }      
       }
@@ -78,9 +78,22 @@
             $where['id'] = $_GET['id'];
         }
         var_dump($where);
-        if($this->model->delete($where)) {
+        if($this->model->deleteGV($where)) {
             header('location: ?c=cbgv');
         }   
+    }
+
+    public function search()
+    {
+      if (isset($_POST['ten'])) {
+        $where['ten'] = $_POST['ten'];
+        $data = [];
+        $search = $this->model->searchGV($where);
+        $data['gv'] = $search;
+      }
+      var_dump($_POST);
+      echo $where['ten'];
+      $this->renderView('index',$data);
     }
   }
 ?>
