@@ -16,7 +16,7 @@
     {
       $data = [];
       $this->model->tinhLuong();
-      $gv = $this->model->getGV($data);
+      $gv = $this->model->getGV();
       $data['gv'] = $gv;
       $this->renderView('index',$data);
     }
