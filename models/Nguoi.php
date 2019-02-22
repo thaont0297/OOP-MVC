@@ -2,11 +2,10 @@
 	require_once LIBRARY_PATH . "database.php";
 	
 
-	class Nguoi extends Database{
+	class Nguoi{
 
 		public function __construct()
 		{
-			parent:: __construct();
 		}
 
 		protected $id;

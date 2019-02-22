@@ -16,6 +16,7 @@
 		public function __construct()
 		{
 			parent:: __construct();
+			$this->_connect = new Database();
 
 		}
 
@@ -61,13 +62,13 @@
 		public function tinhLuong()
 		{
 			$sql = 'UPDATE giaovien SET giaovien.luongthuclinh = giaovien.luongcung + giaovien.thuong - giaovien.phat';
-			$result = $this->_connect->query($sql);
+			$result = $this->_connect->excuted($sql);
 		}
 
 		public function getGV()
 		{
 			$sql = 'SELECT * FROM giaovien';
-			$result = $this->_connect->query($sql);
+			$result = $this->_connect->excuted($sql);
 			return $result->fetch_all(MYSQLI_ASSOC);
 		}
 		public function createGV($where = [])
@@ -75,10 +76,10 @@
 			if (!empty($where) > 0 ) {
 			$sql = 'INSERT INTO giaovien (ten, ngaysinh, que, luongcung, thuong, phat) VALUES ("'.$where['ten'].'","'.$where['ngaysinh'].'","'.$where['que'].'","'.$where['luongcung'].'","'.$where['thuong'].'","'.$where['phat'].'");';
 			echo $sql;
-				if ($result = $this->_connect->query($sql)) {
+				if ($result = $this->_connect->excuted($sql)) {
 					return true;
 		 		} else {
-		 			echo 'Không thể thêm'.$this->_connect->error;
+		 			echo 'Không thể thêm'.$this->_connect->error();
 		 			return false;
 		 		}
 			}
@@ -88,7 +89,7 @@
 		{
 			if (isset($where)) {
 				$sql = 'SELECT * FROM giaovien WHERE id = '.$where['id'];
-				$query = $this->_connect->query($sql);
+				$query = $this->_connect->excuted($sql);
 				if ($query) {
 					$result = $query->fetch_assoc();
 					return $result;
@@ -101,10 +102,10 @@
 			if (!empty($where) > 0 ) {
 			$sql = 'UPDATE giaovien SET ten = "'.$where['ten'].'", ngaysinh = "'.$where['ngaysinh'].'", que = "'.$where['que'].'", luongcung = "'.$where['luongcung'].'", thuong = "'.$where['thuong'].'", phat = "'.$where['phat'].'" WHERE id = '. $where['id'];
 			echo $sql;
-				if ($result = $this->_connect->query($sql)) {
+				if ($result = $this->_connect->excuted($sql)) {
 					return true;
 		 		} else {
-		 			echo 'Không thể sửa'.$this->_connect->error;
+		 			echo 'Không thể sửa'.$this->_connect->error();
 		 			return false;
 		 		}
 			}
@@ -113,10 +114,10 @@
 		public function deleteGV($id)
 		{
 				$sql = 'DELETE FROM giaovien WHERE id = '.$id;
-				if ($result = $this->_connect->query($sql)) {
+				if ($result = $this->_connect->excuted($sql)) {
 					return true;
 				} else {
-					echo "Không thể xóa".$this->_connect->error;
+					echo "Không thể xóa".$this->_connect->error();
 					return false;
 				}
 
@@ -125,7 +126,7 @@
 		public function searchGV($strWhere)
 		{
 			$sql = 'SELECT * FROM giaovien WHERE ten LIKE "%'.$strWhere.'%"';
-			$query = $this->_connect->query($sql);
+			$query = $this->_connect->excuted($sql);
 				if ($query) {
 					$result = $query->fetch_all(MYSQLI_ASSOC);
 					return $result;

@@ -11,5 +11,13 @@ class Database {
             die("Connection failed: " . $this->_connect->connect_error);
         }       
     }
+    public function excuted($sql)
+    {
+    	return $this->_connect->query($sql);
+    }
+    public function error()
+    {
+        return $this->connect->error;
+    }
 }
 ?>
