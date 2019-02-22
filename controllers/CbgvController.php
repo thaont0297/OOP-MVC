@@ -18,7 +18,6 @@
       $this->model->tinhLuong();
       $gv = $this->model->getGV($data);
       $data['gv'] = $gv;
-      var_dump($data['gv']);
       $this->renderView('index',$data);
     }
 
@@ -86,14 +85,18 @@
     public function search()
     {
       if (isset($_POST['ten'])) {
-        $where['ten'] = $_POST['ten'];
+        $strWhere = $_POST['ten'];
+        $search = $this->model->searchGV($strWhere);
         $data = [];
-        $search = $this->model->searchGV($where);
         $data['gv'] = $search;
       }
-      var_dump($_POST);
-      echo $where['ten'];
-      $this->renderView('index',$data);
+      if (!empty($data)) {
+        $this->renderView('search',$data);
+      }
+      else {
+        echo "Không có kết quả phù hợp";
+      }
+      
     }
   }
 ?>

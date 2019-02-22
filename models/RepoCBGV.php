@@ -110,10 +110,9 @@
 			}
 		}
 
-		public function deleteGV($where = [])
+		public function deleteGV($id)
 		{
-			if (isset($where)) {
-				$sql = 'DELETE FROM giaovien WHERE id = '.$where['id'];
+				$sql = 'DELETE FROM giaovien WHERE id = '.$id;
 				if ($result = $this->_connect->query($sql)) {
 					return true;
 				} else {
@@ -121,20 +120,16 @@
 					return false;
 				}
 
-			}
 		}
-
 
 		public function searchGV($strWhere)
 		{
-			$strWhere = '';
-			if (isset($where)) {
-				$strWhere = $where['ten'];
-				$sql = 'SELECT * FROM giaovien WHERE 1=1 AND ten LIKE "%'.$strWhere.'%"';
-				echo $sql;
-				$result = $this->_connect->query();
-				return $result->fetch_all(MYSQLI_ASSOC);
-			}
+			$sql = 'SELECT * FROM giaovien WHERE ten LIKE "%'.$strWhere.'%"';
+			$query = $this->_connect->query($sql);
+				if ($query) {
+					$result = $query->fetch_all(MYSQLI_ASSOC);
+					return $result;
+				}
 		}
 
 	}
