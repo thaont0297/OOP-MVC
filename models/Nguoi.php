@@ -1,24 +1,21 @@
 <?php 
-	require_once LIBRARY_PATH . "database.php";
-	
-
 	class Nguoi{
-
-		public function __construct()
-		{
-		}
-
 		protected $id;
 		protected $ten;
 		protected $ngaysinh;
 		protected $que;
+
+		public function __construct()
+		{
+
+		}
 
 		public function setID($id)
 		{
 			$this->id = $id; 
 		}
 
-		public function getID($id)
+		public function getID()
 		{
 			return $this->id;
 		}
@@ -28,7 +25,7 @@
 			$this->ten = $ten;
 		}
 
-		public function getTen($ten)
+		public function getTen()
 		{
 			return $this->ten;
 		}
@@ -38,7 +35,7 @@
 			$this->ngaysinh = $ngaysinh;
 		}
 
-		public function getNgaysinh($ngaysinh)
+		public function getNgaysinh()
 		{
 			return $this->ngaysinh;
 		}
@@ -48,7 +45,7 @@
 			$this->que = $que;
 		}
 
-		public function getQue($que)
+		public function getQue()
 		{
 			return $this->que;
 		}

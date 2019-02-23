@@ -2,67 +2,59 @@
   require CONTROLLER_PATH . 'BaseController.php';
   require MODEL_PATH . 'RepoCBGV.php';
 
+
   class CbgvController extends BaseController {
 
-    protected $model;
+    protected $repo;
 
     public function __construct()
     {        
         parent::__construct();
-        $this->model = new RepoCBGV(); 
+        $this->repo = new RepoCBGV(); 
     }
 
     public function index()
     {
       $data = [];
-      $this->model->tinhLuong();
-      $gv = $this->model->getGV();
+      $this->repo->tinhLuong();
+      $gv = $this->repo->getGV();
       $data['gv'] = $gv;
       $this->renderView('index',$data);
     }
 
-    public function create($where = [])
+    public function create()
     {
-      $where = [];
+      $gv = new CBGV();
       if (isset($_POST) && isset($_POST['create'])) {
-        $where = [
-          'ten' => $_POST['ten'],
-          'ngaysinh' => $_POST['ngaysinh'],
-          'que' => $_POST['que'],
-          'luongcung' => $_POST['luongcung'],
-          'thuong' => $_POST['thuong'],
-          'phat' => $_POST['phat'],
-        ];
-        var_dump($where);
-        if ($this->model->createGV($where)) {
+        $gv->setTen($_POST['ten']);
+        $gv->setNgaysinh($_POST['ngaysinh']);
+        $gv->setQue($_POST['que']);
+        $gv->setLuongcung($_POST['luongcung']); 
+        $gv->setThuong($_POST['thuong']); 
+        $gv->setPhat($_POST['phat']);
+        if ($this->repo->createGV($gv)) {
           header('Location: ?c=cbgv');
         }
       }      
       $this->renderView('create');
     }
 
-    public function edit($where = [])
+    public function edit()
     {
-
-      $where = [];
+      $gv = new CBGV();
       if (isset($_GET['id']) && $_GET['id'] != '') {
-        $where['id'] = $_GET['id'];
-        $gv = $this->model->getOne($where);
-        $data = [];
-        $data['gv'] = $gv;
+        $gv->setID($_GET['id']);
+        $data = $this->repo->getOne($_GET['id']);
       }
       if (isset($_POST) && isset($_POST['edit'])) {
-        $where = [
-          'id' => $_GET['id'],
-          'ten' => $_POST['ten'],
-          'ngaysinh' => $_POST['ngaysinh'],
-          'que' => $_POST['que'],
-          'luongcung' => $_POST['luongcung'],
-          'thuong' => $_POST['thuong'],
-          'phat' => $_POST['phat'],
-        ];
-        var_dump($where);
-        if ($this->model->editGV($where)) {
+        $gv->setID($_GET['id']);
+        $gv->setTen($_POST['ten']);
+        $gv->setNgaysinh($_POST['ngaysinh']);
+        $gv->setQue($_POST['que']);
+        $gv->setLuongcung($_POST['luongcung']); 
+        $gv->setThuong($_POST['thuong']); 
+        $gv->setPhat($_POST['phat']);
+        if ($this->repo->editGV($gv)) {
           header('Location: ?c=cbgv');
         }      
       }
@@ -71,22 +63,19 @@
 
     public function delete()
     {
-        $data = [];
-        $where = [];
-        if( isset($_GET['id']) && $_GET['id'] != '') {
-            $where['id'] = $_GET['id'];
-        }
-        var_dump($where);
-        if($this->model->deleteGV($where)) {
+      if( isset($_GET['id']) && $_GET['id'] != '') { 
+        $id = $_GET['id'];
+        if($this->repo->deleteGV($id)) {
             header('location: ?c=cbgv');
-        }   
+        }
+      }   
     }
 
     public function search()
     {
       if (isset($_POST['ten'])) {
         $strWhere = $_POST['ten'];
-        $search = $this->model->searchGV($strWhere);
+        $search = $this->repo->searchGV($strWhere);
         $data = [];
         $data['gv'] = $search;
       }

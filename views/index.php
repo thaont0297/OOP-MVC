@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<title>Danh sách cán bộ giáo viên</title>
 	<link rel="stylesheet" href="">
 </head>
@@ -13,7 +14,7 @@
 			<h3><a href="index.php?c=cbgv&m=create">Thêm giáo viên</a></h3>
 			<form action="index.php?c=cbgv&m=search" method="POST" accept-charset="utf-8">
 				Tìm kiếm theo tên: 
-				<input type="text" name="ten">
+				<input id="myInput" type="text" name="ten">
 				<button type="submit" name="search">Tìm kiếm</button>
 			</form>
 			<thead>
@@ -29,7 +30,7 @@
 					<th>Hành động</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="myTable">
 				<?php foreach ($data['gv'] as $key): ?>
 				<tr>
 					<td><?php echo $key['id']; ?></td>
@@ -51,3 +52,14 @@
 	</center>
 </body>
 </html>
+<script>
+	$(document).ready(function(){
+		$("#myInput").on("keyup",function(){
+			var value = $(this).val().toLowerCase();
+			$("#myTable tr").filter(function(){
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+
+		});
+	});
+</script>					
