@@ -16,7 +16,7 @@
     public function index()
     {
       $data = [];
-      $this->repo->tinhLuong();
+      $this->repo->getSalary();
       $gv = $this->repo->getGV();
       $data['gv'] = $gv;
       $this->renderView('index',$data);
@@ -74,8 +74,8 @@
     public function search()
     {
       if (isset($_POST['ten'])) {
-        $strWhere = $_POST['ten'];
-        $search = $this->repo->searchGV($strWhere);
+        $ten = $_POST['ten'];
+        $search = $this->repo->searchGV($ten);
         $data = [];
         $data['gv'] = $search;
       }

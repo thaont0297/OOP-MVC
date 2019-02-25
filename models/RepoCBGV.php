@@ -13,10 +13,15 @@
 			$this->_connect = new Database();
 		}
 		
-		public function tinhLuong()
+		public function getSalary()
 		{
 			$sql = 'UPDATE giaovien SET giaovien.luongthuclinh = giaovien.luongcung + giaovien.thuong - giaovien.phat';
-			$result = $this->_connect->excuted($sql);
+			if($result = $this->_connect->excuted($sql)) {
+				return true;
+		 	} else {
+		 		echo 'Không thể tính'.$this->_connect->error();
+		 		return false;
+		 	} 
 		}
 
 		public function getGV()
@@ -72,14 +77,14 @@
 
 		}
 
-		public function searchGV($strWhere)
+		public function searchGV($ten)
 		{
-			$sql = 'SELECT * FROM giaovien WHERE ten LIKE "%'.$strWhere.'%"';
+			$sql = 'SELECT * FROM giaovien WHERE ten LIKE "%'.$ten.'%"';
 			$query = $this->_connect->excuted($sql);
-				if ($query) {
-					$result = $query->fetch_all(MYSQLI_ASSOC);
-					return $result;
-				}
+			if ($query) {
+				$result = $query->fetch_all(MYSQLI_ASSOC);
+				return $result;
+			}
 		}
 
 	}
