@@ -32,8 +32,8 @@
 		}
 		public function createGV($gv)
 		{
-			print_r($gv->getLuongcung());
-			$sql = 'INSERT INTO giaovien (ten, ngaysinh, que, luongcung, thuong, phat) VALUES ("'.$gv->getTen().'","'.$gv->getNgaysinh().'","'.$gv->getQue().'","'.$gv->getLuongcung().'","'.$gv->getThuong().'","'.$gv->getPhat().'");';
+			print_r($gv->getLuongCung());
+			$sql = 'INSERT INTO giaovien (ten, ngaysinh, que, luongcung, thuong, phat) VALUES ("'.$gv->getTen().'","'.$gv->getNgaySinh().'","'.$gv->getQue().'","'.$gv->getLuongCung().'","'.$gv->getThuong().'","'.$gv->getPhat().'");';
 			echo $sql;
 			if ($result = $this->_connect->excuted($sql)) {
 				return true;
@@ -55,7 +55,7 @@
 
 		public function editGV($gv)
 		{
-			$sql = 'UPDATE giaovien SET ten = "'.$gv->getTen().'", ngaysinh = "'.$gv->getNgaysinh().'", que = "'.$gv->getQue().'", luongcung = "'.$gv->getLuongcung().'", thuong = "'.$gv->getThuong().'", phat = "'.$gv->getPhat().'" WHERE id = '. $gv->getID();
+			$sql = 'UPDATE giaovien SET ten = "'.$gv->getTen().'", ngaysinh = "'.$gv->getNgaySinh().'", que = "'.$gv->getQue().'", luongcung = "'.$gv->getLuongCung().'", thuong = "'.$gv->getThuong().'", phat = "'.$gv->getPhat().'" WHERE id = '. $gv->getID();
 			echo $sql;
 			if ($result = $this->_connect->excuted($sql)) {
 				return true;

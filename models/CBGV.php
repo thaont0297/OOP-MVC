@@ -3,24 +3,24 @@
 
 	class CBGV extends Nguoi
 	{
-		protected $luongcung;
+		protected $luongCung;
 		protected $thuong;
 		protected $phat;
-		protected $luongthuclinh;
+		protected $luongThucLinh;
 
 		public function __construct()
 		{
 			parent:: __construct();
 		}
 
-		public function setLuongcung($luongcung)
+		public function setLuongCung($luongCung)
 		{
-			$this->luongcung = $luongcung; 
+			$this->LuongCung = $LuongCung; 
 		}
 
-		public function getLuongcung()
+		public function getLuongCung()
 		{
-			return $this->luongcung;
+			return $this->LuongCung;
 		}
 
 		public function setThuong($thuong)
@@ -43,14 +43,14 @@
 			return $this->phat;
 		}
 
-		public function setLuongthuclinh($luongthuclinh)
+		public function setLuongThuc($LuongThuc)
 		{
-			$this->luongthuclinh = $luongthuclinh; 
+			$this->LuongThuc = $LuongThuc; 
 		}
 
-		public function getLuongthuclinh()
+		public function getLuongThuc()
 		{
-			return $this->luongthuclinh;
+			return $this->LuongThuc;
 		}
 	}
 ?>

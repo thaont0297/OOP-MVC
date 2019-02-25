@@ -27,9 +27,9 @@
       $gv = new CBGV();
       if (isset($_POST) && isset($_POST['create'])) {
         $gv->setTen($_POST['ten']);
-        $gv->setNgaysinh($_POST['ngaysinh']);
+        $gv->setNgaySinh($_POST['ngaysinh']);
         $gv->setQue($_POST['que']);
-        $gv->setLuongcung($_POST['luongcung']); 
+        $gv->setLuongCung($_POST['luongcung']); 
         $gv->setThuong($_POST['thuong']); 
         $gv->setPhat($_POST['phat']);
         if ($this->repo->createGV($gv)) {
@@ -49,9 +49,9 @@
       if (isset($_POST) && isset($_POST['edit'])) {
         $gv->setID($_GET['id']);
         $gv->setTen($_POST['ten']);
-        $gv->setNgaysinh($_POST['ngaysinh']);
+        $gv->setNgaySinh($_POST['ngaysinh']);
         $gv->setQue($_POST['que']);
-        $gv->setLuongcung($_POST['luongcung']); 
+        $gv->setLuongCung($_POST['luongcung']); 
         $gv->setThuong($_POST['thuong']); 
         $gv->setPhat($_POST['phat']);
         if ($this->repo->editGV($gv)) {

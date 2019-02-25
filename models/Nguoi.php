@@ -2,7 +2,7 @@
 	class Nguoi{
 		protected $id;
 		protected $ten;
-		protected $ngaysinh;
+		protected $ngaySinh;
 		protected $que;
 
 		public function __construct()
@@ -30,14 +30,14 @@
 			return $this->ten;
 		}
 
-		public function setNgaysinh($ngaysinh)
+		public function setNgaySinh($ngaysinh)
 		{
-			$this->ngaysinh = $ngaysinh;
+			$this->ngaySinh = $ngaySinh;
 		}
 
-		public function getNgaysinh()
+		public function getNgaySinh()
 		{
-			return $this->ngaysinh;
+			return $this->ngaySinh;
 		}
 
 		public function setQue($que)
