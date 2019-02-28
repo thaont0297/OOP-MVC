@@ -30,19 +30,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($data['gv'] as $key): ?>
+				<?php foreach ($data as $key): ?>
 				<tr>
-					<td><?php echo $key['id']; ?></td>
-					<td><?php echo $key['ten']; ?></td>
-					<td><?php echo $key['ngaysinh']; ?></td>
-					<td><?php echo $key['que']; ?></td>
-					<td><?php echo $key['luongcung']; ?></td>
-					<td><?php echo $key['thuong']; ?></td>
-					<td><?php echo $key['phat']; ?></td>
-					<td><?php echo $key['luongthuclinh']; ?></td>
+					<td><?php echo $key->getID(); ?></td>
+					<td><?php echo $key->getTen(); ?></td>
+					<td><?php echo $key->getNgaySinh(); ?></td>
+					<td><?php echo $key->getQue(); ?></td>
+					<td><?php echo $key->getLuongCung(); ?></td>
+					<td><?php echo $key->getThuong(); ?></td>
+					<td><?php echo $key->getPhat(); ?></td>
+					<td><?php echo $key->getLuongThuc(); ?></td>
 					<td>
-						<a href="index.php?c=cbgv&m=edit&id=<?php echo $key['id']; ?>" title="Sửa">Sửa</a> | 
-						<a href="index.php?c=cbgv&m=delete&id=<?php echo $key['id']; ?>" title="Xóa" onClick="return confirm('Bạn muốn xóa?')">Xóa</a>
+						<a href="index.php?c=cbgv&m=edit&id=<?php echo $key->getID(); ?>" title="Sửa">Sửa</a> | 
+						<a href="index.php?c=cbgv&m=delete&id=<?php echo $key->getID(); ?>" title="Xóa" onClick="return confirm('Bạn muốn xóa?')">Xóa</a>
 					</td>
 				</tr>
 				<?php endforeach; ?>

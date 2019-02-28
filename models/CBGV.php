@@ -6,7 +6,7 @@
 		protected $luongCung;
 		protected $thuong;
 		protected $phat;
-		protected $luongThucLinh;
+		protected $luongThuc;
 
 		public function __construct()
 		{
@@ -15,12 +15,12 @@
 
 		public function setLuongCung($luongCung)
 		{
-			$this->LuongCung = $LuongCung; 
+			$this->luongCung = $luongCung; 
 		}
 
 		public function getLuongCung()
 		{
-			return $this->LuongCung;
+			return $this->luongCung;
 		}
 
 		public function setThuong($thuong)
@@ -43,14 +43,14 @@
 			return $this->phat;
 		}
 
-		public function setLuongThuc($LuongThuc)
+		public function setLuongThuc($luongThuc)
 		{
-			$this->LuongThuc = $LuongThuc; 
+			$this->luongThuc = $luongThuc; 
 		}
 
 		public function getLuongThuc()
 		{
-			return $this->LuongThuc;
+			return $this->luongThuc;
 		}
 	}
 ?>

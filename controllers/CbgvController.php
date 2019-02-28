@@ -15,10 +15,9 @@
 
     public function index()
     {
-      $data = [];
       $this->repo->getSalary();
-      $gv = $this->repo->getGV();
-      $data['gv'] = $gv;
+      $data = $this->repo->getlistGV();
+
       $this->renderView('index',$data);
     }
 
@@ -44,7 +43,7 @@
       $gv = new CBGV();
       if (isset($_GET['id']) && $_GET['id'] != '') {
         $gv->setID($_GET['id']);
-        $data = $this->repo->getOne($_GET['id']);
+        $data = $this->repo->getGV($_GET['id']);
       }
       if (isset($_POST) && isset($_POST['edit'])) {
         $gv->setID($_GET['id']);
@@ -75,9 +74,7 @@
     {
       if (isset($_POST['ten'])) {
         $ten = $_POST['ten'];
-        $search = $this->repo->searchGV($ten);
-        $data = [];
-        $data['gv'] = $search;
+        $data = $this->repo->searchGV($ten);
       }
       if (!empty($data)) {
         $this->renderView('search',$data);

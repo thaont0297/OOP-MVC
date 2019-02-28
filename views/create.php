@@ -39,6 +39,7 @@
 				</tbody>
 			</table>
 		</form>
+		<a href="?c=cbgv">Quay lại trang chủ</a>
 	</center>
 </body>
 </html>

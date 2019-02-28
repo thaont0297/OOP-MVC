@@ -30,7 +30,7 @@
 			return $this->ten;
 		}
 
-		public function setNgaySinh($ngaysinh)
+		public function setNgaySinh($ngaySinh)
 		{
 			$this->ngaySinh = $ngaySinh;
 		}
